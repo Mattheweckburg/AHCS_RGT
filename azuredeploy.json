@@ -1,0 +1,673 @@
+{
+	"$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion" : "1.0.0.0",
+	"parameters" : {
+		"location" : {
+			"type" : "string",
+			"defaultvalue" : "South Central US"
+			"metadata" : {
+				"description" : "This is the region where the resources will be created"
+			}
+		},
+		"virtualNetworkName" : {
+			"type" : "string",
+			"defaultValue" : "Vnet-Core",
+			"metadata" : {
+				"description" : "VNET for Core Services like RODC and DNS"
+			}
+		},
+		"virtualNetworkName" : {
+			"type" : "string",
+			"defaultValue" : "Vnet-DevTst",
+			"metadata" : {
+				"description" : "VNET for the development and test environments"
+			}
+		},
+		"virtualNetworkName" : {
+			"type" : "string",
+			"defaultValue" : "Vnet-QA",
+			"metadata" : {
+				"description" : "VNET for the QA Environment"
+			}
+		},
+		"virtualNetworkName" : {
+			"type" : "string",
+			"defaultValue" : "Vnet-Prd",
+			"metadata" : {
+				"description" : "VNET for the Production Environment"
+			}
+		},
+		"AppSubnet" : {
+			"type" : "string",
+			"defaultValue" : "10.0.0.0/8",
+			"metadata" : {
+				"description" : "The CIDR address space for your Virtual Network in Azure"
+			}
+		},
+		"Sub-Core" : {
+			"type" : "string",
+			"defaultValue" : "10.0.0.0/24",
+			"metadata" : {
+				"description" : "This is CIDR prefix for the Azure Core Services Subnet"
+			}
+		},
+		"Sub-Dev" : {
+			"type" : "string",
+			"defaultValue" : "10.10.0.0/24",
+			"metadata" : {
+				"description" : "This is CIDR prefix for the Dev Environment Subnet"
+			}
+		},
+		"Sub-Tst" : {
+			"type" : "string",
+			"defaultValue" : "10.5.0.0/24",
+			"metadata" : {
+				"description" : "This is CIDR prefix for the Test Environment Subnet"
+			}
+		},
+		"Sub-QA-DB" : {
+			"type" : "string",
+			"defaultValue" : "10.2.2.0/24",
+			"metadata" : {
+				"description" : "This is CIDR prefix for the QA Environment DB Subnet"
+			}
+		},
+		"Sub-QA-App" : {
+			"type" : "string",
+			"defaultValue" : "10.2.1.0/24",
+			"metadata" : {
+				"description" : "This is CIDR prefix for the QA Environment App Subnet"
+			}
+		},
+		"Sub-QA-WFE" : {
+			"type" : "string",
+			"defaultValue" : "10.2.0.0/24",
+			"metadata" : {
+				"description" : "This is CIDR prefix for the QA Environment WFE Subnet"
+			}
+		},
+		"Sub-Prd-DB" : {
+			"type" : "string",
+			"defaultValue" : "10.1.2.0/24",
+			"metadata" : {
+				"description" : "This is CIDR prefix for the Production Environment DB Subnet"
+			}
+		},
+		"Sub-Prd-App" : {
+			"type" : "string",
+			"defaultValue" : "10.1.1.0/24",
+			"metadata" : {
+				"description" : "This is CIDR prefix for the Production Environment App Subnet"
+			}
+		},
+		"Sub-Prd-WFE" : {
+			"type" : "string",
+			"defaultValue" : "10.1.0.0/24",
+			"metadata" : {
+				"description" : "This is CIDR prefix for the Production Environment WFE Subnet"
+			}
+		},
+		"PrdFENSGName" : {
+			"type" : "string",
+			"defaultValue" : "NSGPRDWFE",
+			"metadata" : {
+				"description" : "This is name of the networkSecurityGroup that will be assigned to the Prod Env. WFE Subnet"
+			}
+		},
+		"PrdAppNSGName" : {
+			"type" : "string",
+			"defaultValue" : "NSGPrdApp",
+			"metadata" : {
+				"description" : "This is name of the networkSecurityGroup that will be assigned to the Prod Env. App Subnet"
+			}
+		},
+		"PrdDBNSGName" : {
+			"type" : "string",
+			"defaultValue" : "NSGPrdDB",
+			"metadata" : {
+				"description" : "This is name of the networkSecurityGroup that will be assigned to the Prod Env. DB Subnet"
+			}
+		}
+		"QAFENSGName" : {
+		"type" : "string",
+		"defaultValue" : "NSGQAWFE",
+		"metadata" : {
+			"description" : "This is name of the networkSecurityGroup that will be assigned to the QA Env. WFE Subnet"
+		}
+	
+	
+	},
+		"QAAppNSGName" : {
+	"type" : "string",
+	"defaultValue" : "NSGQAApp",
+	"metadata" : {
+		"description" : "This is name of the networkSecurityGroup that will be assigned to the QA Env. App Subnet"
+	}
+
+},
+		"QADBNSGName" : {
+	"type" : "string",
+	"defaultValue" : "NSGQADB",
+	"metadata" : {
+		"description" : "This is name of the networkSecurityGroup that will be assigned to the QA Env DB Subnet"
+	}
+
+},
+		"TstNSGName" : {
+	"type" : "string",
+	"defaultValue" : "NSGTst",
+	"metadata" : {
+		"description" : "This is name of the networkSecurityGroup that will be assigned to the Test Env. Subnet"
+	}
+
+},
+		"DevNSGName" : {
+	"type" : "string",
+	"defaultValue" : "NSGDev",
+	"metadata" : {
+		"description" : "This is name of the networkSecurityGroup that will be assigned to the Dev Env. Subnet"
+	}
+
+},
+		"CoreNSGName" : {
+	"type" : "string",
+	"defaultValue" : "NSGCore",
+	"metadata" : {
+		"description" : "This is name of the networkSecurityGroup that will be assigned to Core Services Subnet"
+	}
+}
+},
+	"resources" : [{
+		"apiVersion" : "2015-05-01-preview",
+		"type" : "Microsoft.Network/networkSecurityGroups",
+		"name" : "[parameters('PrdFENSGName')]",
+		"location" : "[parameters('location')]",
+		"properties" : {
+			"securityRules" : [{
+					"name" : "rdp_rule",
+					"properties" : {
+						"description" : "Allow RDP",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "3389",
+						"sourceAddressPrefix" : "Internet",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 100,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "web_rule",
+					"properties" : {
+						"description" : "Allow WEB",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "80",
+						"sourceAddressPrefix" : "Internet",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 101,
+						"direction" : "Inbound"
+					}
+				}
+			]
+		}
+	}, {
+		"apiVersion" : "2015-05-01-preview",
+		"type" : "Microsoft.Network/networkSecurityGroups",
+		"name" : "[parameters('QAFENSGName')]",
+		"location" : "[parameters('location')]",
+		"properties" : {
+			"securityRules" : [{
+					"name" : "rdp_rule",
+					"properties" : {
+						"description" : "Allow RDP",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "3389",
+						"sourceAddressPrefix" : "Internet",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 100,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "web_rule",
+					"properties" : {
+						"description" : "Allow WEB",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "80",
+						"sourceAddressPrefix" : "Internet",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 101,
+						"direction" : "Inbound"
+					}
+				}
+			]
+		}
+	}, {
+		"apiVersion" : "2015-05-01-preview",
+		"type" : "Microsoft.Network/networkSecurityGroups",
+		"name" : "[parameters('TstNSGName')]",
+		"location" : "[parameters('location')]",
+		"properties" : {
+			"securityRules" : [{
+					"name" : "rdp_rule",
+					"properties" : {
+						"description" : "Allow RDP",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "3389",
+						"sourceAddressPrefix" : "Internet",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 100,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "web_rule",
+					"properties" : {
+						"description" : "Allow WEB",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "80",
+						"sourceAddressPrefix" : "Internet",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 101,
+						"direction" : "Inbound"
+					}
+				}
+			]
+		}
+	}, {
+		"apiVersion" : "2015-05-01-preview",
+		"type" : "Microsoft.Network/networkSecurityGroups",
+		"name" : "[parameters('DevNSGName')]",
+		"location" : "[parameters('location')]",
+		"properties" : {
+			"securityRules" : [{
+					"name" : "rdp_rule",
+					"properties" : {
+						"description" : "Allow RDP",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "3389",
+						"sourceAddressPrefix" : "Internet",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 100,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "web_rule",
+					"properties" : {
+						"description" : "Allow WEB",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "80",
+						"sourceAddressPrefix" : "Internet",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 101,
+						"direction" : "Inbound"
+					}
+				}
+			]
+		}
+	}, {
+		"apiVersion" : "2015-05-01-preview",
+		"type" : "Microsoft.Network/networkSecurityGroups",
+		"name" : "[parameters('CoreNSGName')]",
+		"location" : "[parameters('location')]",
+		"properties" : {
+			"securityRules" : [{
+					"name" : "rdp_rule",
+					"properties" : {
+						"description" : "Allow RDP",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "3389",
+						"sourceAddressPrefix" : "Internet",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 100,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "web_rule",
+					"properties" : {
+						"description" : "Allow WEB",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "80",
+						"sourceAddressPrefix" : "Internet",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 101,
+						"direction" : "Inbound"
+					}
+				}
+			]
+		}
+	},
+	{
+		"apiVersion" : "2015-05-01-preview",
+		"type" : "Microsoft.Network/networkSecurityGroups",
+		"name" : "[parameters('PrdAppNSGName')]",
+		"location" : "[parameters('location')]",
+		"properties" : {
+			"securityRules" : [{
+					"name" : "Allow_FE",
+					"properties" : {
+						"description" : "Allow FE Subnet",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "443",
+						"sourceAddressPrefix" : "10.1.0.0/24",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 100,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "Block_RDP_Internet",
+					"properties" : {
+						"description" : "Block RDP",
+						"protocol" : "tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "3389",
+						"sourceAddressPrefix" : "Internet",
+						"destinationAddressPrefix" : "*",
+						"access" : "Deny",
+						"priority" : 101,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "Block_Internet_Outbound",
+					"properties" : {
+						"description" : "Block Internet",
+						"protocol" : "*",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "*",
+						"sourceAddressPrefix" : "*",
+						"destinationAddressPrefix" : "Internet",
+						"access" : "Deny",
+						"priority" : 200,
+						"direction" : "Outbound"
+					}
+				}
+			]
+		}
+	}, {
+		"apiVersion" : "2015-05-01-preview",
+		"type" : "Microsoft.Network/networkSecurityGroups",
+		"name" : "[parameters('QAAppNSGName')]",
+		"location" : "[parameters('location')]",
+		"properties" : {
+			"securityRules" : [{
+					"name" : "Allow_FE",
+					"properties" : {
+						"description" : "Allow FE Subnet",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "443",
+						"sourceAddressPrefix" : "10.2.0.0/24",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 100,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "Block_RDP_Internet",
+					"properties" : {
+						"description" : "Block RDP",
+						"protocol" : "tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "3389",
+						"sourceAddressPrefix" : "Internet",
+						"destinationAddressPrefix" : "*",
+						"access" : "Deny",
+						"priority" : 101,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "Block_Internet_Outbound",
+					"properties" : {
+						"description" : "Block Internet",
+						"protocol" : "*",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "*",
+						"sourceAddressPrefix" : "*",
+						"destinationAddressPrefix" : "Internet",
+						"access" : "Deny",
+						"priority" : 200,
+						"direction" : "Outbound"
+					}
+				}
+			]
+		}
+	}, {
+		"apiVersion" : "2015-05-01-preview",
+		"type" : "Microsoft.Network/networkSecurityGroups",
+		"name" : "[parameters('PrdDBNSGName')]",
+		"location" : "[parameters('location')]",
+		"properties" : {
+			"securityRules" : [{
+					"name" : "Allow_App",
+					"properties" : {
+						"description" : "Allow APP Subnet",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "1433",
+						"sourceAddressPrefix" : "10.1.1.0/24",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 100,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "Block_FE",
+					"properties" : {
+						"description" : "Block FE Subnet",
+						"protocol" : "*",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "*",
+						"sourceAddressPrefix" : "10.1.0.0/24",
+						"destinationAddressPrefix" : "*",
+						"access" : "Deny",
+						"priority" : 101,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "Block_App",
+					"properties" : {
+						"description" : "Block App Subnet",
+						"protocol" : "*",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "*",
+						"sourceAddressPrefix" : "10.1.1.0/24",
+						"destinationAddressPrefix" : "*",
+						"access" : "Deny",
+						"priority" : 102,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "Block_Internet",
+					"properties" : {
+						"description" : "Block Internet",
+						"protocol" : "*",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "*",
+						"sourceAddressPrefix" : "*",
+						"destinationAddressPrefix" : "Internet",
+						"access" : "Deny",
+						"priority" : 200,
+						"direction" : "Outbound"
+					}
+				}
+			]
+		}
+	}, {
+		"apiVersion" : "2015-05-01-preview",
+		"type" : "Microsoft.Network/networkSecurityGroups",
+		"name" : "[parameters('QADBNSGName')]",
+		"location" : "[parameters('location')]",
+		"properties" : {
+			"securityRules" : [{
+					"name" : "Allow_App",
+					"properties" : {
+						"description" : "Allow APP Subnet",
+						"protocol" : "Tcp",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "1433",
+						"sourceAddressPrefix" : "10.2.1.0/24",
+						"destinationAddressPrefix" : "*",
+						"access" : "Allow",
+						"priority" : 100,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "Block_FE",
+					"properties" : {
+						"description" : "Block FE Subnet",
+						"protocol" : "*",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "*",
+						"sourceAddressPrefix" : "10.2.0.0/24",
+						"destinationAddressPrefix" : "*",
+						"access" : "Deny",
+						"priority" : 101,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "Block_App",
+					"properties" : {
+						"description" : "Block App Subnet",
+						"protocol" : "*",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "*",
+						"sourceAddressPrefix" : "10.2.1.0/24",
+						"destinationAddressPrefix" : "*",
+						"access" : "Deny",
+						"priority" : 102,
+						"direction" : "Inbound"
+					}
+				}, {
+					"name" : "Block_Internet",
+					"properties" : {
+						"description" : "Block Internet",
+						"protocol" : "*",
+						"sourcePortRange" : "*",
+						"destinationPortRange" : "*",
+						"sourceAddressPrefix" : "*",
+						"destinationAddressPrefix" : "Internet",
+						"access" : "Deny",
+						"priority" : 200,
+						"direction" : "Outbound"
+					}
+				}
+			]
+		}
+	},
+	{
+		"apiVersion" : "2015-05-01-preview",
+		"type" : "Microsoft.Network/virtualNetworks",
+		"name" : "[parameters('virtualNetworkName')]",
+		"location" : "[parameters('location')]",
+		"dependsOn" : [
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('PrdFENSGName'))]",
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('PrdAppNSGName'))]",
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('PrdDBNSGName'))]"
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('QAFENSGName'))]",
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('QAAppNSGName'))]",
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('QADBNSGName'))]"
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('TstNSGName'))]"
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('DevNSGName'))]"
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('CoreNSGName'))]"
+		],
+		"properties" : {
+			"addressSpace" : {
+				"addressPrefixes" : [
+					"[parameters('addressPrefix')]"
+				]
+			},
+			"subnets" : [{
+					"name" : "SubPrdWFE",
+					"properties" : {
+						"addressPrefix" : "[parameters('Sub-Prd-WFE')]",
+						"networkSecurityGroup" : {
+							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('PRdFENSGName'))]"
+						}
+					}
+				}, {
+					"name" : "SubQAWFE",
+					"properties" : {
+						"addressPrefix" : "[parameters('Sub-QA-WFE')]",
+						"networkSecurityGroup" : {
+							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('QAFENSGName'))]"
+						}
+					}
+				},{
+					"name" : "SubPrdApp",
+					"properties" : {
+						"addressPrefix" : "[parameters('Sub-Prd-App')]",
+						"networkSecurityGroup" : {
+							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('PrdAppNSGName'))]"
+						}
+					}
+				},{
+					"name" : "SubQAApp",
+					"properties" : {
+						"addressPrefix" : "[parameters('Sub-QA-App')]",
+						"networkSecurityGroup" : {
+							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('QAAppNSGName'))]"
+						}
+					}
+				},{
+					"name" : "SubPrdDB",
+					"properties" : {
+						"addressPrefix" : "[parameters('Sub-Prd-DB')]",
+						"networkSecurityGroup" : {
+							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('PrdDBNSGName'))]"
+						}
+					}
+				},{
+					"name" : "SubQADB",
+					"properties" : {
+						"addressPrefix" : "[parameters('Sub-QA-DB')]",
+						"networkSecurityGroup" : {
+							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('QADBNSGName'))]"
+						}
+					}
+				},{
+					"name" : "SubTst",
+					"properties" : {
+						"addressPrefix" : "[parameters('Sub-Tst')]",
+						"networkSecurityGroup" : {
+							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('TstNSGName'))]"
+						}
+					}
+				},{
+					"name" : "SubDev",
+					"properties" : {
+						"addressPrefix" : "[parameters('Sub-Dev')]",
+						"networkSecurityGroup" : {
+							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('DevNSGName'))]"
+						}
+					}
+				},{
+					"name" : "SubCore",
+					"properties" : {
+						"addressPrefix" : "[parameters('Sub-Core')]",
+						"networkSecurityGroup" : {
+							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('CoreNSGName'))]"
+						}
+					}
+				}
+			]
+		}
+	}]
+}
