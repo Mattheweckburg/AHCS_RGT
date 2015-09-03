@@ -4,7 +4,7 @@
 	"parameters" : {
 		"location" : {
 			"type" : "string",
-			"defaultvalue" : "[parameters('location')]"
+			"defaultvalue" : "[parameters('location')]",
 			"metadata" : {
 				"description" : "This is the region where the resources will be created"
 			}
