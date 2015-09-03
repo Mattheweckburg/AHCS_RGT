@@ -4,22 +4,16 @@
 	"parameters" : {
 		"location" : {
 			"type" : "string",
+			"defaultvalue" : "South Central US"
 			"metadata" : {
 				"description" : "This is the region where the resources will be created"
 			}
 		},
 		"virtualNetworkName" : {
 			"type" : "string",
-			"defaultValue" : "Vnet-Core",
+			"defaultValue" : "Vnet-Prd",
 			"metadata" : {
-				"description" : "VNET for Core Services like RODC and DNS"
-			}
-		},
-		"virtualNetworkName" : {
-			"type" : "string",
-			"defaultValue" : "Vnet-DevTst",
-			"metadata" : {
-				"description" : "VNET for the development and test environments"
+				"description" : "VNET for the Production Environment"
 			}
 		},
 		"virtualNetworkName" : {
@@ -31,9 +25,16 @@
 		},
 		"virtualNetworkName" : {
 			"type" : "string",
-			"defaultValue" : "Vnet-Prd",
+			"defaultValue" : "Vnet-DevTst",
 			"metadata" : {
-				"description" : "VNET for the Production Environment"
+				"description" : "VNET for the development and test environments"
+			}
+		},
+		"virtualNetworkName" : {
+			"type" : "string",
+			"defaultValue" : "Vnet-Core",
+			"metadata" : {
+				"description" : "VNET for Core Services like RODC and DNS"
 			}
 		},
 		"AppSubnet" : {
@@ -126,16 +127,16 @@
 			"metadata" : {
 				"description" : "This is name of the networkSecurityGroup that will be assigned to the Prod Env. DB Subnet"
 			}
-		},
+		}
 		"QAFENSGName" : {
 		"type" : "string",
 		"defaultValue" : "NSGQAWFE",
 		"metadata" : {
 			"description" : "This is name of the networkSecurityGroup that will be assigned to the QA Env. WFE Subnet"
-			}
+		}
 	
 	
-		},
+	},
 		"QAAppNSGName" : {
 	"type" : "string",
 	"defaultValue" : "NSGQAApp",
@@ -579,13 +580,7 @@
 		"dependsOn" : [
 			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('PrdFENSGName'))]",
 			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('PrdAppNSGName'))]",
-			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('PrdDBNSGName'))]",
-			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('QAFENSGName'))]",
-			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('QAAppNSGName'))]",
-			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('QADBNSGName'))]",
-			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('TstNSGName'))]",
-			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('DevNSGName'))]",
-			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('CoreNSGName'))]"
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('PrdDBNSGName'))]"
 		],
 		"properties" : {
 			"addressSpace" : {
@@ -602,19 +597,47 @@
 						}
 					}
 				}, {
-					"name" : "SubQAWFE",
-					"properties" : {
-						"addressPrefix" : "[parameters('Sub-QA-WFE')]",
-						"networkSecurityGroup" : {
-							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('QAFENSGName'))]"
-						}
-					}
-				},{
 					"name" : "SubPrdApp",
 					"properties" : {
 						"addressPrefix" : "[parameters('Sub-Prd-App')]",
 						"networkSecurityGroup" : {
 							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('PrdAppNSGName'))]"
+						}
+					}
+				},{
+					"name" : "SubPrdDB",
+					"properties" : {
+						"addressPrefix" : "[parameters('Sub-Prd-DB')]",
+						"networkSecurityGroup" : {
+							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('PrdDBNSGName'))]"
+						}
+					}
+				}
+			]
+		}
+	},
+		{
+		"apiVersion" : "2015-05-01-preview",
+		"type" : "Microsoft.Network/virtualNetworks",
+		"name" : "[parameters('virtualNetworkName')]",
+		"location" : "[parameters('location')]",
+		"dependsOn" : [
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('QAFENSGName'))]",
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('QAAppNSGName'))]",
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('QADBNSGName'))]"
+		],
+		"properties" : {
+			"addressSpace" : {
+				"addressPrefixes" : [
+					"[parameters('addressPrefix')]"
+				]
+			},
+			"subnets" : [{
+					"name" : "SubQAWFE",
+					"properties" : {
+						"addressPrefix" : "[parameters('Sub-QA-WFE')]",
+						"networkSecurityGroup" : {
+							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('QAFENSGName'))]"
 						}
 					}
 				},{
@@ -626,14 +649,6 @@
 						}
 					}
 				},{
-					"name" : "SubPrdDB",
-					"properties" : {
-						"addressPrefix" : "[parameters('Sub-Prd-DB')]",
-						"networkSecurityGroup" : {
-							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('PrdDBNSGName'))]"
-						}
-					}
-				},{
 					"name" : "SubQADB",
 					"properties" : {
 						"addressPrefix" : "[parameters('Sub-QA-DB')]",
@@ -641,7 +656,25 @@
 							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('QADBNSGName'))]"
 						}
 					}
-				},{
+				}
+			]
+		}
+	},	{
+		"apiVersion" : "2015-05-01-preview",
+		"type" : "Microsoft.Network/virtualNetworks",
+		"name" : "[parameters('virtualNetworkName')]",
+		"location" : "[parameters('location')]",
+		"dependsOn" : [
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('TstNSGName'))]"
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('DevNSGName'))]"
+			],
+		"properties" : {
+			"addressSpace" : {
+				"addressPrefixes" : [
+					"[parameters('addressPrefix')]"
+				]
+			},
+			"subnets" : [{
 					"name" : "SubTst",
 					"properties" : {
 						"addressPrefix" : "[parameters('Sub-Tst')]",
@@ -657,7 +690,24 @@
 							"id" : "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('DevNSGName'))]"
 						}
 					}
-				},{
+				}
+			]
+		}
+	},	{
+		"apiVersion" : "2015-05-01-preview",
+		"type" : "Microsoft.Network/virtualNetworks",
+		"name" : "[parameters('virtualNetworkName')]",
+		"location" : "[parameters('location')]",
+		"dependsOn" : [
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('CoreNSGName'))]"
+		],
+		"properties" : {
+			"addressSpace" : {
+				"addressPrefixes" : [
+					"[parameters('addressPrefix')]"
+				]
+			},
+			"subnets" : [{
 					"name" : "SubCore",
 					"properties" : {
 						"addressPrefix" : "[parameters('Sub-Core')]",
@@ -668,5 +718,6 @@
 				}
 			]
 		}
-	}]
+	}
+	]
 }
