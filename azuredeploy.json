@@ -109,28 +109,28 @@
 		},
 		"PrdFENSGName" : {
 			"type" : "string",
-			"defaultValue" : "NSGPRDWFE",
+			"defaultValue" : "NSG-PRD-WFE",
 			"metadata" : {
 				"description" : "This is name of the networkSecurityGroup that will be assigned to the Prod Env. WFE Subnet"
 			}
 		},
 		"PrdAppNSGName" : {
 			"type" : "string",
-			"defaultValue" : "NSGPrdApp",
+			"defaultValue" : "NSG-Prd-App",
 			"metadata" : {
 				"description" : "This is name of the networkSecurityGroup that will be assigned to the Prod Env. App Subnet"
 			}
 		},
 		"PrdDBNSGName" : {
 			"type" : "string",
-			"defaultValue" : "NSGPrdDB",
+			"defaultValue" : "NSG-Prd-DB",
 			"metadata" : {
 				"description" : "This is name of the networkSecurityGroup that will be assigned to the Prod Env. DB Subnet"
 			}
 		},
 		"QAFENSGName" : {
 		"type" : "string",
-		"defaultValue" : "NSGQAWFE",
+		"defaultValue" : "NSG-QA-WFE",
 		"metadata" : {
 			"description" : "This is name of the networkSecurityGroup that will be assigned to the QA Env. WFE Subnet"
 		}
@@ -139,7 +139,7 @@
 	},
 		"QAAppNSGName" : {
 	"type" : "string",
-	"defaultValue" : "NSGQAApp",
+	"defaultValue" : "NSG-QA-App",
 	"metadata" : {
 		"description" : "This is name of the networkSecurityGroup that will be assigned to the QA Env. App Subnet"
 	}
@@ -147,7 +147,7 @@
 },
 		"QADBNSGName" : {
 	"type" : "string",
-	"defaultValue" : "NSGQADB",
+	"defaultValue" : "NSG-QA-DB",
 	"metadata" : {
 		"description" : "This is name of the networkSecurityGroup that will be assigned to the QA Env DB Subnet"
 	}
@@ -155,7 +155,7 @@
 },
 		"TstNSGName" : {
 	"type" : "string",
-	"defaultValue" : "NSGTst",
+	"defaultValue" : "NSG-Tst",
 	"metadata" : {
 		"description" : "This is name of the networkSecurityGroup that will be assigned to the Test Env. Subnet"
 	}
@@ -163,7 +163,7 @@
 },
 		"DevNSGName" : {
 	"type" : "string",
-	"defaultValue" : "NSGDev",
+	"defaultValue" : "NSG-Dev",
 	"metadata" : {
 		"description" : "This is name of the networkSecurityGroup that will be assigned to the Dev Env. Subnet"
 	}
@@ -171,7 +171,7 @@
 },
 		"CoreNSGName" : {
 	"type" : "string",
-	"defaultValue" : "NSGCore",
+	"defaultValue" : "NSG-Core",
 	"metadata" : {
 		"description" : "This is name of the networkSecurityGroup that will be assigned to Core Services Subnet"
 	}
