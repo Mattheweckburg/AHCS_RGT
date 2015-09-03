@@ -126,16 +126,16 @@
 			"metadata" : {
 				"description" : "This is name of the networkSecurityGroup that will be assigned to the Prod Env. DB Subnet"
 			}
-		}
+		},
 		"QAFENSGName" : {
 		"type" : "string",
 		"defaultValue" : "NSGQAWFE",
 		"metadata" : {
 			"description" : "This is name of the networkSecurityGroup that will be assigned to the QA Env. WFE Subnet"
-		}
+			}
 	
 	
-	},
+		},
 		"QAAppNSGName" : {
 	"type" : "string",
 	"defaultValue" : "NSGQAApp",
