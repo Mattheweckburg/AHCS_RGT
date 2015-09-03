@@ -48,31 +48,31 @@
 			"value" : "10.1.0.0/24"
 		},
 		"PrdFENSGName" : {
-			"value" : "NSGPRDWFE"
+			"value" : "NSG-PRD-WFE"
 		},
 		"PrdAppNSGName" : {
-			"value" : "NSGPrdApp"
+			"value" : "NSG-Prd-pp"
 		},
 		"PrdDBNSGName" : {
-			"value" : "NSGPrdDB"
+			"value" : "NSG-Prd-DB"
 		},
 		"QAFENSGName" : {
-			"value" : "NSGQAWFE"
+			"value" : "NSG-QA-WFE"
 		},
 		"QAAppNSGName" : {
-			"value" : "NSGQAApp"
+			"value" : "NSG-QA-App"
 		},
 		"QADBNSGName" : {
-			"value" : "NSGQADB"
+			"value" : "NSG-QA-DB"
 		},
 		"TstNSGName" : {
-			"value" : "NSGTst"
+			"value" : "NSG-Tst"
 		},
 		"DevNSGName" : {
-			"value" : "NSGDev"
+			"value" : "NSG-Dev"
 		},
 		"CoreNSGName" : {
-			"value" : "NSGCore"
+			"value" : "NSG-Core"
 		}
 	}
 }
