@@ -3,7 +3,7 @@
 	"contentVersion" : "1.0.0.2",
 	"parameters" : {
 		"location" : {
-			"value" : "South Central US"
+			"value" : "SouthCentralUS"
 		},
 		"virtualNetworkName1" : {
 			"value" : "Vnet-Core"
@@ -16,6 +16,12 @@
 		},
 		"virtualNetworkName4" : {
 			"value" : "Vnet-Prd"
+		},
+		"dnsNameforLBIP": {
+			"value": ""
+		},
+		"publicIPAddressType": {
+			"value": "Dynamic"
 		},
 		"AppSubnet" : {
 			"value" : "10.0.0.0/8"
