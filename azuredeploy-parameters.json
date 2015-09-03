@@ -5,16 +5,16 @@
 		"location" : {
 			"value" : "South Central US"
 		},
-		"virtualNetworkName" : {
+		"virtualNetworkName1" : {
 			"value" : "Vnet-Core"
 		},
-		"virtualNetworkName" : {
+		"virtualNetworkName2" : {
 			"value" : "Vnet-DevTst"
 		},
-		"virtualNetworkName" : {
+		"virtualNetworkName3" : {
 			"value" : "Vnet-QA"
 		},
-		"virtualNetworkName" : {
+		"virtualNetworkName4" : {
 			"value" : "Vnet-Prd"
 		},
 		"AppSubnet" : {
