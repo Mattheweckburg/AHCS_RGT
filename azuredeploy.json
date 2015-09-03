@@ -665,7 +665,7 @@
 		"name" : "[parameters('virtualNetworkName')]",
 		"location" : "[parameters('location')]",
 		"dependsOn" : [
-			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('TstNSGName'))]"
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('TstNSGName'))]",
 			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('DevNSGName'))]"
 			],
 		"properties" : {
