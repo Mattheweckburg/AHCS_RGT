@@ -585,7 +585,7 @@
 		"properties" : {
 			"addressSpace" : {
 				"addressPrefixes" : [
-					"[parameters('addressPrefix')]"
+					"[parameters('AppSubnet')]"
 				]
 			},
 			"subnets" : [{
@@ -629,7 +629,7 @@
 		"properties" : {
 			"addressSpace" : {
 				"addressPrefixes" : [
-					"[parameters('addressPrefix')]"
+					"[parameters('AppSubnet')]"
 				]
 			},
 			"subnets" : [{
@@ -671,7 +671,7 @@
 		"properties" : {
 			"addressSpace" : {
 				"addressPrefixes" : [
-					"[parameters('addressPrefix')]"
+					"[parameters('AppSubnet')]"
 				]
 			},
 			"subnets" : [{
@@ -704,7 +704,7 @@
 		"properties" : {
 			"addressSpace" : {
 				"addressPrefixes" : [
-					"[parameters('addressPrefix')]"
+					"[parameters('AppSubnet')]"
 				]
 			},
 			"subnets" : [{
