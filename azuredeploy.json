@@ -579,12 +579,12 @@
 		"dependsOn" : [
 			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('PrdFENSGName'))]",
 			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('PrdAppNSGName'))]",
-			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('PrdDBNSGName'))]"
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('PrdDBNSGName'))]",
 			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('QAFENSGName'))]",
 			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('QAAppNSGName'))]",
-			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('QADBNSGName'))]"
-			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('TstNSGName'))]"
-			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('DevNSGName'))]"
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('QADBNSGName'))]",
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('TstNSGName'))]",
+			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('DevNSGName'))]",
 			"[concat('Microsoft.Network/networkSecurityGroups/', parameters('CoreNSGName'))]"
 		],
 		"properties" : {
