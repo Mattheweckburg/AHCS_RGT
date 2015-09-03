@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	"contentVersion" : "1.0.0.1",
+	"contentVersion" : "1.0.0.2",
 	"parameters" : {
 		"location" : {
 			"type" : "string",
@@ -9,28 +9,28 @@
 				"description" : "This is the region where the resources will be created"
 			}
 		},
-		"virtualNetworkName" : {
+		"virtualNetworkName4" : {
 			"type" : "string",
 			"defaultValue" : "Vnet-Prd",
 			"metadata" : {
 				"description" : "VNET for the Production Environment"
 			}
 		},
-		"virtualNetworkName" : {
+		"virtualNetworkName3" : {
 			"type" : "string",
 			"defaultValue" : "Vnet-QA",
 			"metadata" : {
 				"description" : "VNET for the QA Environment"
 			}
 		},
-		"virtualNetworkName" : {
+		"virtualNetworkName2" : {
 			"type" : "string",
 			"defaultValue" : "Vnet-DevTst",
 			"metadata" : {
 				"description" : "VNET for the development and test environments"
 			}
 		},
-		"virtualNetworkName" : {
+		"virtualNetworkName1" : {
 			"type" : "string",
 			"defaultValue" : "Vnet-Core",
 			"metadata" : {
