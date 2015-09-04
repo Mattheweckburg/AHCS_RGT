@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	"contentVersion" : "2.0.1.4",
+	"contentVersion" : "2.0.1.5",
 	"parameters" : {
 		"location" : {
 			"type" : "string",
@@ -205,8 +205,8 @@
 		"frontEndIPConfigID4" : "[concat(variables('lbID4'),'/frontendIPConfigurations/loadBalancerFrontEnd')]",
 		"backEndIPConfigID4" : "[concat(variables('nicId4'),'/ipConfigurations/ipconfig1')]",
 
-		"PrddnsNameforLBIP": "web03",
-		"PrdpublicIPAddressType": "Dynamic",
+		"QAdnsNameforLBIP": "web03",
+		"QApublicIPAddressType": "Dynamic",
 		"virtualNetworkName3" : "Vnet-QA",
 		"Sub-QA-WFE" : "10.2.0.0/24",
 		"publicIPAddressName3" : "publicIpQA",
