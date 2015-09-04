@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	"contentVersion" : "2.0.0.4",
+	"contentVersion" : "2.0.0.5",
 	"parameters" : {
 		"location" : {
 			"type" : "string",
@@ -846,16 +846,6 @@
 							"frontendPort" : 80,
 							"backendPort" : 80,
 							"enableFloatingIP" : false
-						},
-						"name" : "HTTPS-Prd",
-						"properties" : {
-							"frontendIPConfiguration" : {
-								"id" : "[variables('frontEndIPConfigID4')]"
-							},
-							"protocol" : "tcp",
-							"frontendPort" : 443,
-							"backendPort" : 443,
-							"enableFloatingIP" : false
 						}
 					}
 				]
@@ -892,16 +882,6 @@
 							"protocol" : "tcp",
 							"frontendPort" : 80,
 							"backendPort" : 80,
-							"enableFloatingIP" : false
-						},
-						"name" : "HTTPS-QA",
-						"properties" : {
-							"frontendIPConfiguration" : {
-								"id" : "[variables('frontEndIPConfigID3')]"
-							},
-							"protocol" : "tcp",
-							"frontendPort" : 443,
-							"backendPort" : 443,
 							"enableFloatingIP" : false
 						}
 					}
