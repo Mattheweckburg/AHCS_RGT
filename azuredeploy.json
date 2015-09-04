@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	"contentVersion" : "2.0.1.6",
+	"contentVersion" : "2.0.1.7",
 	"parameters" : {
 		"location" : {
 			"type" : "string",
@@ -193,12 +193,12 @@
 		"PrddnsNameforLBIP": "web04",
 		"PrdpublicIPAddressType": "Dynamic",
 		"virtualNetworkName4" : "Vnet-Prd",
-		"Sub-Prd-WFE" : "10.1.0.0/24",
+		"SubPrdWFE" : "Sub-Prd-WFE",
 		"publicIPAddressName4" : "publicIpPrd",
 		"loadBalancerName4" : "PrdLB",
 		"nicName4" : "networkInterface1",
 		"vnetID4" : "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName4'))]",
-		"subnetRef4" : "[concat(variables('vnetID4'),'/subnets/',variables('Sub-Prd-WFE'))]",
+		"subnetRef4" : "[concat(variables('vnetID4'),'/subnets/',variables('SubPrdWFE'))]",
 		"publicIPAddressID4" : "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName4'))]",
 		"lbID4" : "[resourceId('Microsoft.Network/loadBalancers',variables('loadBalancerName4'))]",
 		"nicId4" : "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName4'))]",
@@ -208,12 +208,12 @@
 		"QAdnsNameforLBIP": "web03",
 		"QApublicIPAddressType": "Dynamic",
 		"virtualNetworkName3" : "Vnet-QA",
-		"Sub-QA-WFE" : "10.2.0.0/24",
+		"SubQAWFE" : "Sub-QA-WFE",
 		"publicIPAddressName3" : "publicIpQA",
 		"loadBalancerName3" : "QALB",
 		"nicName3" : "networkInterface2",
 		"vnetID3" : "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName3'))]",
-		"subnetRef3" : "[concat(variables('vnetID3'),'/subnets/',variables('Sub-QA-WFE'))]",
+		"subnetRef3" : "[concat(variables('vnetID3'),'/subnets/',variables('SubQAWFE'))]",
 		"publicIPAddressID3" : "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName3'))]",
 		"lbID3" : "[resourceId('Microsoft.Network/loadBalancers',variables('loadBalancerName3'))]",
 		"nicId3" : "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName3'))]",
@@ -818,7 +818,7 @@
 			],
 			"properties" : {
 				"ipConfigurations" : [{
-						"name" : "ipconfig2",
+						"name" : "ipconfig1",
 						"properties" : {
 							"privateIPAllocationMethod" : "Dynamic",
 							"subnet" : {
