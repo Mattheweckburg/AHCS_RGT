@@ -175,7 +175,6 @@
 		}
 	},
 	"variables" : {
-		 # Prod LB
 		"publicIPAddressName4" : "publicIpPrd",
 		"loadBalancerName4" : "PrdLB",
 		"nicName4" : "networkInterface1",
@@ -186,7 +185,7 @@
 		"nicId4" : "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName4'))]",
 		"frontEndIPConfigID4" : "[concat(variables('lbID4'),'/frontendIPConfigurations/loadBalancerFrontEnd')]",
 		"backEndIPConfigID4" : "[concat(variables('nicId4'),'/ipConfigurations/ipconfig1')]"
-		 # QA LB
+
 		"publicIPAddressName3" : "publicIpQA",
 		"loadBalancerName3" : "QALB",
 		"nicName3" : "networkInterface2",
