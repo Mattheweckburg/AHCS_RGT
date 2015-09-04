@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	"contentVersion" : "2.0.0.1",
+	"contentVersion" : "2.0.0.4",
 	"parameters" : {
 		"location" : {
 			"type" : "string",
@@ -846,10 +846,7 @@
 							"frontendPort" : 80,
 							"backendPort" : 80,
 							"enableFloatingIP" : false
-						}
-					}
-				],
-				"inboundNatRules" : [{
+						},
 						"name" : "HTTPS-Prd",
 						"properties" : {
 							"frontendIPConfiguration" : {
@@ -896,10 +893,7 @@
 							"frontendPort" : 80,
 							"backendPort" : 80,
 							"enableFloatingIP" : false
-						}
-					}
-				],
-				"inboundNatRules" : [{
+						},
 						"name" : "HTTPS-QA",
 						"properties" : {
 							"frontendIPConfiguration" : {
