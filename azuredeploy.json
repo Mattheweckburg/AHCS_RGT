@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	"contentVersion" : "2.0.1.3",
+	"contentVersion" : "2.0.1.4",
 	"parameters" : {
 		"location" : {
 			"type" : "string",
@@ -40,26 +40,6 @@
 			"metadata" : {
 				"description" : "VNET for Core Services like RODC and DNS"
 			}
-		},
-		"PrddnsNameforLBIP": {
-			"value": ""
-		},
-		"QAdnsNameforLBIP": {
-			"value": ""
-		},
-		"PrdpublicIPAddressType": {
-			"defaultValue": "Dynamic",
-			"allowedValues": [
-				"Dynamic",
-				"Static"
-							  ]
-		},
-		"QApublicIPAddressType": {
-			"defaultValue": "Dynamic",
-			"allowedValues": [
-				"Dynamic",
-				"Static"
-							  ]
 		},
 		"AppSubnet" : {
 			"type" : "string",
@@ -210,6 +190,8 @@
 		}
 	},
 	"variables" : {
+		"PrddnsNameforLBIP": "web04",
+		"PrdpublicIPAddressType": "Dynamic",
 		"virtualNetworkName4" : "Vnet-Prd",
 		"Sub-Prd-WFE" : "10.1.0.0/24",
 		"publicIPAddressName4" : "publicIpPrd",
@@ -223,6 +205,8 @@
 		"frontEndIPConfigID4" : "[concat(variables('lbID4'),'/frontendIPConfigurations/loadBalancerFrontEnd')]",
 		"backEndIPConfigID4" : "[concat(variables('nicId4'),'/ipConfigurations/ipconfig1')]",
 
+		"PrddnsNameforLBIP": "web03",
+		"PrdpublicIPAddressType": "Dynamic",
 		"virtualNetworkName3" : "Vnet-QA",
 		"Sub-QA-WFE" : "10.2.0.0/24",
 		"publicIPAddressName3" : "publicIpQA",
@@ -886,6 +870,17 @@
 							"backendPort" : 80,
 							"enableFloatingIP" : false
 						}
+					},{
+						"name" : "HTTPS-Prd",
+						"properties" : {
+							"frontendIPConfiguration" : {
+								"id" : "[variables('frontEndIPConfigID3')]"
+							},
+							"protocol" : "tcp",
+							"frontendPort" : 443,
+							"backendPort" : 443,
+							"enableFloatingIP" : false
+						}
 					}
 				]
 			}
@@ -921,6 +916,17 @@
 							"protocol" : "tcp",
 							"frontendPort" : 80,
 							"backendPort" : 80,
+							"enableFloatingIP" : false
+						}
+					},{
+						"name" : "HTTPS-QA",
+						"properties" : {
+							"frontendIPConfiguration" : {
+								"id" : "[variables('frontEndIPConfigID3')]"
+							},
+							"protocol" : "tcp",
+							"frontendPort" : 443,
+							"backendPort" : 443,
 							"enableFloatingIP" : false
 						}
 					}
