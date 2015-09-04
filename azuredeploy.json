@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	"contentVersion" : "2.0.1.0",
+	"contentVersion" : "2.0.1.1",
 	"parameters" : {
 		"location" : {
 			"type" : "string",
@@ -190,7 +190,7 @@
 	},
 	"variables" : {
 		"virtualNetworkName4" : "Vnet-Prd",
-		"Sub-Prd-WFE" : "10.1.0.0",
+		"Sub-Prd-WFE" : "10.1.0.0/24",
 		"publicIPAddressName4" : "publicIpPrd",
 		"loadBalancerName4" : "PrdLB",
 		"nicName4" : "networkInterface1",
@@ -203,7 +203,7 @@
 		"backEndIPConfigID4" : "[concat(variables('nicId4'),'/ipConfigurations/ipconfig1')]",
 
 		"virtualNetworkName3" : "Vnet-QA",
-		"Sub-QA-WFE" : "10.2.0.0",
+		"Sub-QA-WFE" : "10.2.0.0/24",
 		"publicIPAddressName3" : "publicIpQA",
 		"loadBalancerName3" : "QALB",
 		"nicName3" : "networkInterface2",
