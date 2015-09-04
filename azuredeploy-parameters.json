@@ -1,6 +1,6 @@
 {
 	"$schema" : "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-	"contentVersion" : "2.0.0.1",
+	"contentVersion" : "2.0.0.2",
 	"parameters" : {
 		"location" : {
 			"value" : "SouthCentralUS"
@@ -16,18 +16,6 @@
 		},
 		"virtualNetworkName4" : {
 			"value" : "Vnet-Prd"
-		},
-		"PrddnsNameforLBIP": {
-			"value": ""
-		},
-		"QAdnsNameforLBIP": {
-			"value": ""
-		},
-		"PrdpublicIPAddressType": {
-			"value": "Dynamic"
-		},
-		"QApublicIPAddressType": {
-			"value": "Dynamic"
 		},
 		"AppSubnet" : {
 			"value" : "10.0.0.0/8"
