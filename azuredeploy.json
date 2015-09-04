@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	"contentVersion" : "2.0.0.6",
+	"contentVersion" : "2.0.0.7",
 	"parameters" : {
 		"location" : {
 			"type" : "string",
@@ -32,7 +32,6 @@
 			"metadata" : {
 				"description" : "VNET for the development and test environments"
 			}
-			+
 		},
 		"virtualNetworkName1" : {
 			"type" : "string",
