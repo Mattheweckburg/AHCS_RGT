@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	"contentVersion" : "1.0.0.2",
+	"contentVersion" : "2.0.0.0",
 	"parameters" : {
 		"location" : {
 			"type" : "string",
@@ -184,7 +184,7 @@
 		"lbID4" : "[resourceId('Microsoft.Network/loadBalancers',variables('loadBalancerName4'))]",
 		"nicId4" : "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName4'))]",
 		"frontEndIPConfigID4" : "[concat(variables('lbID4'),'/frontendIPConfigurations/loadBalancerFrontEnd')]",
-		"backEndIPConfigID4" : "[concat(variables('nicId4'),'/ipConfigurations/ipconfig1')]",
+		"backEndIPConfigID4" : "[concat(variables('nicId4'),'/ipConfigurations/ipconfig1')]"
 
 		"publicIPAddressName3" : "publicIpQA",
 		"loadBalancerName3" : "QALB",
@@ -837,7 +837,7 @@
 					}
 				],
 				"inboundNatRules" : [{
-						"name" : "HTTP",
+						"name" : "HTTP-Prd",
 						"properties" : {
 							"frontendIPConfiguration" : {
 								"id" : "[variables('frontEndIPConfigID4')]"
@@ -850,7 +850,7 @@
 					}
 				],
 				"inboundNatRules" : [{
-						"name" : "HTTPS",
+						"name" : "HTTPS-Prd",
 						"properties" : {
 							"frontendIPConfiguration" : {
 								"id" : "[variables('frontEndIPConfigID4')]"
@@ -887,7 +887,7 @@
 					}
 				],
 				"inboundNatRules" : [{
-						"name" : "HTTP",
+						"name" : "HTTP-QA",
 						"properties" : {
 							"frontendIPConfiguration" : {
 								"id" : "[variables('frontEndIPConfigID3')]"
@@ -900,7 +900,7 @@
 					}
 				],
 				"inboundNatRules" : [{
-						"name" : "HTTPS",
+						"name" : "HTTPS-QA",
 						"properties" : {
 							"frontendIPConfiguration" : {
 								"id" : "[variables('frontEndIPConfigID3')]"
