@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	"contentVersion" : "2.0.0.5",
+	"contentVersion" : "2.0.0.6",
 	"parameters" : {
 		"location" : {
 			"type" : "string",
@@ -32,6 +32,7 @@
 			"metadata" : {
 				"description" : "VNET for the development and test environments"
 			}
+			+
 		},
 		"virtualNetworkName1" : {
 			"type" : "string",
@@ -824,7 +825,7 @@
 			],
 			"properties" : {
 				"frontendIPConfigurations" : [{
-						"name" : "loadBalancerFrontEnd",
+						"name" : "PrdloadBalancerFrontEnd",
 						"properties" : {
 							"publicIPAddress" : {
 								"id" : "[variables('publicIPAddressID4')]"
@@ -833,7 +834,7 @@
 					}
 				],
 				"backendAddressPools" : [{
-						"name" : "loadBalancerBackEnd"
+						"name" : "PrdloadBalancerBackEnd"
 					}
 				],
 				"inboundNatRules" : [{
@@ -861,7 +862,7 @@
 			],
 			"properties" : {
 				"frontendIPConfigurations" : [{
-						"name" : "loadBalancerFrontEnd",
+						"name" : "QAloadBalancerFrontEnd",
 						"properties" : {
 							"publicIPAddress" : {
 								"id" : "[variables('publicIPAddressID3')]"
@@ -870,7 +871,7 @@
 					}
 				],
 				"backendAddressPools" : [{
-						"name" : "loadBalancerBackEnd"
+						"name" : "QAloadBalancerBackEnd"
 					}
 				],
 				"inboundNatRules" : [{
