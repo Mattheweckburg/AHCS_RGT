@@ -3,7 +3,7 @@
 	"contentVersion" : "2.0.0.2",
 	"parameters" : {
 		"location" : {
-			"value" : "SouthCentralUS"
+			"value" : "West US"
 		},
 		"virtualNetworkName1" : {
 			"value" : "Vnet-Core"
