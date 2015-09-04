@@ -1,6 +1,6 @@
 {
 	"$schema" : "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-	"contentVersion" : "2.0.0.0",
+	"contentVersion" : "2.0.0.1",
 	"parameters" : {
 		"location" : {
 			"value" : "SouthCentralUS"
@@ -17,10 +17,16 @@
 		"virtualNetworkName4" : {
 			"value" : "Vnet-Prd"
 		},
-		"dnsNameforLBIP": {
+		"PrddnsNameforLBIP": {
 			"value": ""
 		},
-		"publicIPAddressType": {
+		"QAdnsNameforLBIP": {
+			"value": ""
+		},
+		"PrdpublicIPAddressType": {
+			"value": "Dynamic"
+		},
+		"QApublicIPAddressType": {
 			"value": "Dynamic"
 		},
 		"AppSubnet" : {
@@ -44,6 +50,9 @@
 		"Sub-QA-WFE" : {
 			"value" : "10.2.0.0/24"
 		},
+		"Sub-QA" : {
+			"value" : "10.2.0.0/16"
+		},
 		"Sub-Prd-DB" : {
 			"value" : "10.1.2.0/24"
 		},
@@ -52,6 +61,9 @@
 		},
 		"Sub-Prd-WFE" : {
 			"value" : "10.1.0.0/24"
+		},		
+		"Sub-Prd" : {
+			"value" : "10.1.0.0/16"
 		},
 		"PrdFENSGName" : {
 			"value" : "NSG-PRD-WFE"
