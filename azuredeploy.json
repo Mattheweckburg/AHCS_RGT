@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	"contentVersion" : "2.0.0.8",
+	"contentVersion" : "2.0.0.9",
 	"parameters" : {
 		"location" : {
 			"type" : "string",
@@ -89,6 +89,13 @@
 				"description" : "This is CIDR prefix for the QA Environment WFE Subnet"
 			}
 		},
+			"Sub-QA" : {
+			"type" : "string",
+			"defaultValue" : "10.2.0.0/16",
+			"metadata" : {
+				"description" : "This is CIDR prefix for the QA Environment Subnet"
+			}
+		},
 		"Sub-Prd-DB" : {
 			"type" : "string",
 			"defaultValue" : "10.1.2.0/24",
@@ -108,6 +115,13 @@
 			"defaultValue" : "10.1.0.0/24",
 			"metadata" : {
 				"description" : "This is CIDR prefix for the Production Environment WFE Subnet"
+			}
+		},
+			"Sub-Prd" : {
+			"type" : "string",
+			"defaultValue" : "10.2.0.0/16",
+			"metadata" : {
+				"description" : "This is CIDR prefix for the Prod Environment Subnet"
 			}
 		},
 		"PrdFENSGName" : {
@@ -175,17 +189,21 @@
 		}
 	},
 	"variables" : {
+		"virtualNetworkName4" : "Vnet-Prd"
+		"Sub-Prd-WFE" : "10.1.0.0"
 		"publicIPAddressName4" : "publicIpPrd",
 		"loadBalancerName4" : "PrdLB",
 		"nicName4" : "networkInterface1",
 		"vnetID4" : "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName4'))]",
-		"subnetRef4" : "[concat(variables('vnetID4'),'/subnets/',variables('Sub-Prd'))]",
+		"subnetRef4" : "[concat(variables('vnetID4'),'/subnets/',variables('Sub-Prd-WFE'))]",
 		"publicIPAddressID4" : "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName4'))]",
 		"lbID4" : "[resourceId('Microsoft.Network/loadBalancers',variables('loadBalancerName4'))]",
 		"nicId4" : "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName4'))]",
 		"frontEndIPConfigID4" : "[concat(variables('lbID4'),'/frontendIPConfigurations/loadBalancerFrontEnd')]",
 		"backEndIPConfigID4" : "[concat(variables('nicId4'),'/ipConfigurations/ipconfig1')]",
 
+		"virtualNetworkName3" : "Vnet-QA"
+		"Sub-QA-WFE" : "10.2.0.0"
 		"publicIPAddressName3" : "publicIpQA",
 		"loadBalancerName3" : "QALB",
 		"nicName3" : "networkInterface2",
