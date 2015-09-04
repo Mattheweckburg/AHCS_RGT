@@ -1,9 +1,10 @@
 {
 	"$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	"contentVersion" : "2.0.1.1",
+	"contentVersion" : "2.0.1.3",
 	"parameters" : {
 		"location" : {
 			"type" : "string",
+			"defaultValue" : "West US",
 			"allowedValues" : [
 				"East US",
 				"West US",
@@ -39,6 +40,26 @@
 			"metadata" : {
 				"description" : "VNET for Core Services like RODC and DNS"
 			}
+		},
+		"PrddnsNameforLBIP": {
+			"value": ""
+		},
+		"QAdnsNameforLBIP": {
+			"value": ""
+		},
+		"PrdpublicIPAddressType": {
+			"defaultValue": "Dynamic",
+			"allowedValues": [
+				"Dynamic",
+				"Static"
+							  ]
+		},
+		"QApublicIPAddressType": {
+			"defaultValue": "Dynamic",
+			"allowedValues": [
+				"Dynamic",
+				"Static"
+							  ]
 		},
 		"AppSubnet" : {
 			"type" : "string",
