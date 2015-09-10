@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.8",
+    "contentVersion": "1.0.0.9",
     "parameters": {
 		"location" : {
 			"type" : "string",
@@ -16,10 +16,10 @@
 	},	
     "variables": {
         "storageAccountType": "Standard_LRS",
-		"RG_Prod_str": "prdstor",
-		"RG_QA_str": "qastor",
-		"RG_DevTst_str": "devtststor",
-		"RG_Core_str": "corestor"
+		"RG_Prod_str": "storprd",
+		"RG_QA_str": "storqa",
+		"RG_DevTst_str": "stordevtst",
+		"RG_Core_str": "storcore"
     },
     "resources":
     	[{
