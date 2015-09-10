@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.2",
+    "contentVersion": "1.0.0.3",
     "parameters": {
         "RG_Prod_str": {
             "type": "string",
@@ -20,7 +20,7 @@
                 "description": "Unique DNS Name for the Storage Account where the DevTst Virtual Machine's disks will be placed."
 			}
 		},
-        "RG_Core_stor": {
+        "RG_Core_str": {
             "type": "string",
             "metadata": {
                 "description": "Unique DNS Name for the Storage Account where the Core Virtual Machine's disks will be placed."
