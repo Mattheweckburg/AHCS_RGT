@@ -1,6 +1,6 @@
 {
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.1",
+    "contentVersion": "1.0.0.2",
     "parameters": {
         "RG_Prod_str": {
             "value": "prodstorage"
@@ -11,7 +11,7 @@
         "RG_DevTst_str": {
             "value": "devtststorage"
         },
-        "RG_Core_stor": {
+        "RG_Core_str": {
 	    "value": "corestorage"
         }
    }
