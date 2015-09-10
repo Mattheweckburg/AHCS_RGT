@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.7",
+    "contentVersion": "1.0.0.8",
     "parameters": {
 		"location" : {
 			"type" : "string",
@@ -21,41 +21,31 @@
 		"RG_DevTst_str": "devtststor",
 		"RG_Core_str": "corestor"
     },
-    "resources": [
-        {
-            "apiVersion": "2015-05-01-preview",            
-			"type": "Microsoft.Storage/storageAccounts",
-            "name": "[variables('RG_Prod_str')]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "accountType": "[variables('storageAccountType')]
-            }
-        },
-        {
-            "apiVersion": "2015-05-01-preview",
-			"type": "Microsoft.Storage/storageAccounts",
-            "name": "[variables('RG_QA_str')]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "accountType": "[variables('storageAccountType')]"
-            }
-        },
-        {
-            "apiVersion": "2015-05-01-preview",
-			"type": "Microsoft.Storage/storageAccounts",
-            "name": "[variables('RG_DevTst_str')]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "accountType": "[variables('storageAccountType')]"
-            }
-        },        {
-            "apiVersion": "2015-05-01-preview",
-			"type": "Microsoft.Storage/storageAccounts",
-            "name": "[variables('RG_Core_str')]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "accountType": "[variables('storageAccountType')]"
-            }
+    "resources":
+    	[{
+        "apiVersion": "2015-05-01-preview",            
+	"type": "Microsoft.Storage/storageAccounts",
+        "name": "[variables('RG_Prod_str')]",
+        "location": "[resourceGroup().location]",
+        "properties": {"accountType": "[variables('storageAccountType')]"}
+        },{
+        "apiVersion": "2015-05-01-preview",
+	"type": "Microsoft.Storage/storageAccounts",
+	"name": "[variables('RG_QA_str')]",
+        "location": "[resourceGroup().location]",
+        "properties": {"accountType": "[variables('storageAccountType')]"}
+        },{
+        "apiVersion": "2015-05-01-preview",
+	"type": "Microsoft.Storage/storageAccounts",
+        "name": "[variables('RG_DevTst_str')]",
+        "location": "[resourceGroup().location]",
+        "properties": {"accountType": "[variables('storageAccountType')]"}
+        },{
+        "apiVersion": "2015-05-01-preview",
+	"type": "Microsoft.Storage/storageAccounts",
+        "name": "[variables('RG_Core_str')]",
+        "location": "[resourceGroup().location]",
+        "properties": {"accountType": "[variables('storageAccountType')]"}
         }        
     ]
 }
