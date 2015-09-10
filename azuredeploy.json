@@ -1,37 +1,15 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.3",
-    "parameters": {
-        "RG_Prod_str": {
-            "type": "string",
-            "metadata": {
-                "description": "Unique DNS Name for the Storage Account where the Production Virtual Machine's disks will be placed."
-			}
-		},
-        "RG_QA_str": {
-            "type": "string",
-            "metadata": {
-                "description": "Unique DNS Name for the Storage Account where the QA Virtual Machine's disks will be placed."
-			}
-		},
-        "RG_DevTst_str": {
-            "type": "string",
-            "metadata": {
-                "description": "Unique DNS Name for the Storage Account where the DevTst Virtual Machine's disks will be placed."
-			}
-		},
-        "RG_Core_str": {
-            "type": "string",
-            "metadata": {
-                "description": "Unique DNS Name for the Storage Account where the Core Virtual Machine's disks will be placed."
-			}
-		}
-	},	
+    "contentVersion": "1.0.0.4",
+    "parameters": {	},	
     "variables": {
-        "storageAccountType": "Standard_LRS"
+        "storageAccountType": "Standard_LRS",
+		"RG_Prod_str": "prdstor",
+		"RG_QA_str": "qastor",
+		"RG_DevTst_str": "devtststor",
+		"RG_Core_str": "corestor"
     },
-    "resources": [
-        {
+    "resources": [        {
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[parameters('RG_Prod_str')]",
             "apiVersion": "2015-05-01-preview",
@@ -39,8 +17,7 @@
             "properties": {
                 "accountType": "[variables('storageAccountType')]"
             }
-        },
-        {
+        },        {
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[parameters('RG_QA_str')]",
             "apiVersion": "2015-05-01-preview",
@@ -48,8 +25,7 @@
             "properties": {
                 "accountType": "[variables('storageAccountType')]"
             }
-        },
-        {
+        },        {
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[parameters('RG_DevTst_str')]",
             "apiVersion": "2015-05-01-preview",
