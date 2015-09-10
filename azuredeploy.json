@@ -23,35 +23,35 @@
     },
     "resources": [
         {
-            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2015-05-01-preview",            
+			"type": "Microsoft.Storage/storageAccounts",
             "name": "[variables('RG_Prod_str')]",
-            "apiVersion": "2015-05-01-preview",
             "location": "[resourceGroup().location]",
             "properties": {
                 "accountType": "[variables('storageAccountType')]
             }
         },
         {
-            "type": "Microsoft.Storage/storageAccounts",
-            "name": "[variables('RG_QA_str')]",
             "apiVersion": "2015-05-01-preview",
+			"type": "Microsoft.Storage/storageAccounts",
+            "name": "[variables('RG_QA_str')]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "accountType": "[variables('storageAccountType')]"
             }
         },
         {
-            "type": "Microsoft.Storage/storageAccounts",
-            "name": "[variables('RG_DevTst_str')]",
             "apiVersion": "2015-05-01-preview",
+			"type": "Microsoft.Storage/storageAccounts",
+            "name": "[variables('RG_DevTst_str')]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "accountType": "[variables('storageAccountType')]"
             }
         },        {
-            "type": "Microsoft.Storage/storageAccounts",
-            "name": "[variables('RG_Core_str')]",
             "apiVersion": "2015-05-01-preview",
+			"type": "Microsoft.Storage/storageAccounts",
+            "name": "[variables('RG_Core_str')]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "accountType": "[variables('storageAccountType')]"
