@@ -7,6 +7,6 @@ AHCS_RGT testing and implementation
 
 3. NSG - 9 w/rules (completed)
 
-4. LB - Prod WFE, QA WFE w/NAT rules for HTTP/HTTPS (in progress)
+4. LB - Prod WFE, QA WFE w/NAT rules for HTTP/HTTPS (completed)
 
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
