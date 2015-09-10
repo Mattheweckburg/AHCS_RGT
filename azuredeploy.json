@@ -1,7 +1,18 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.4",
-    "parameters": {	},	
+    "contentVersion": "1.0.0.5",
+    "parameters": {
+		"location" : {
+			"type" : "string",
+			"defaultValue" : "West US",
+			"allowedValues" : [
+				"East US",
+				"West US",
+				"South Central US"],
+			"metadata" : {
+				"description" : "This is the region where the resources will be created"
+			}
+	},	
     "variables": {
         "storageAccountType": "Standard_LRS",
 		"RG_Prod_str": "prdstor",
@@ -9,7 +20,8 @@
 		"RG_DevTst_str": "devtststor",
 		"RG_Core_str": "corestor"
     },
-    "resources": [        {
+    "resources": [
+        {
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[parameters('RG_Prod_str')]",
             "apiVersion": "2015-05-01-preview",
@@ -17,7 +29,8 @@
             "properties": {
                 "accountType": "[variables('storageAccountType')]"
             }
-        },        {
+        },
+        {
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[parameters('RG_QA_str')]",
             "apiVersion": "2015-05-01-preview",
@@ -25,7 +38,8 @@
             "properties": {
                 "accountType": "[variables('storageAccountType')]"
             }
-        },        {
+        },
+        {
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[parameters('RG_DevTst_str')]",
             "apiVersion": "2015-05-01-preview",
