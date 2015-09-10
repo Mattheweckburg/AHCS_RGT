@@ -1,0 +1,7 @@
+{
+  "itemDisplayName": "Deploy storage groups and resource groups required for solution",
+  "description": "This template deploys the storage groups for environments and scripts, as well as, resource groups",
+  "summary": "This template takes a minimum amount of parameters and deploys based on RG Template boilerplate",
+  "githubUsername": "mattheweckburg",
+  "dateUpdated": "2015-09-10"
+}
